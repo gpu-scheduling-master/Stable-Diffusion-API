@@ -4,3 +4,4 @@ fastapi
 invisible-watermark
 safetensors
 transformers
+uvicorn
