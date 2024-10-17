@@ -12,4 +12,4 @@ pipe.to("cuda")
 
 
 def gen_image(prompt: str):
-    return pipe(prompt=prompt).images[0]
+    return {"image": pipe(prompt=prompt).images[0]}
