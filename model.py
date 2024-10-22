@@ -1,5 +1,6 @@
 from diffusers import DiffusionPipeline
 import torch
+import io
 
 pipe = DiffusionPipeline.from_pretrained(
     "sd-legacy/stable-diffusion-v1-5",
@@ -12,4 +13,7 @@ pipe.to("cuda")
 
 
 def gen_image(prompt: str):
-    return {"image": pipe(prompt=prompt).images[0]}
+    img = pipe(prompt=prompt).images[0]
+    byte_arr = io.BytesIO()
+    img.save(byte_arr, format="PNG")
+    return byte_arr.getvalue()
