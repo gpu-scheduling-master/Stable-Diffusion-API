@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import Response
 from model import gen_image
 app = FastAPI(title="Stable-Diffusion API", debug=True)
 
@@ -10,4 +11,4 @@ async def healthcheck():
 
 @app.post("/gen-img")
 async def gen_img(prompt: str):
-    return gen_image(prompt)
+    return Response(content=gen_image(prompt), media_type="image/png")
