@@ -10,5 +10,5 @@ async def healthcheck():
 
 
 @app.post("/gen-img")
-async def gen_img(prompt: str):
-    return Response(content=gen_image(prompt), media_type="image/png")
+async def gen_img(prompt: str, step: None | int):
+    return Response(content=gen_image(prompt, step), media_type="image/png")
