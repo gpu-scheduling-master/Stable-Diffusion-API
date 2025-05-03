@@ -6,6 +6,10 @@ COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
+RUN python -c "from diffusers import StableDiffusionPipeline; StableDiffusionPipeline.from_pretrained('CompVis/stable-diffusion-v1-4', use_safetensors=True).save_pretrained('/models/stable-diffusion-v1-4')"
+
 COPY . .
+
+ENV SD_MODEL_PATH="/models/stable-diffusion-v1-4"
 
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

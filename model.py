@@ -5,9 +5,7 @@ import io
 
 pipe = DiffusionPipeline.from_pretrained(
     os.environ["SD_MODEL"],
-    torch_dtype=torch.float16,
-    use_safetensors=True,
-    variant="fp16"
+    torch_dtype=torch.float16
 )
 
 pipe.to("cuda")
